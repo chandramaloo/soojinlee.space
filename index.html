@@ -3,129 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Montclaire‑inspired Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>Soojin Lee – Translator</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* -----  CSS RESET  ---------------------------- */
+    /* ---------- RESET ---------- */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',sans-serif;line-height:1.6;color:#222;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',sans-serif;line-height:1.6;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
     img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
+    a{color:inherit;text-decoration:none}
 
-    /* -----  VARIABLES  ---------------------------- */
+    /* ---------- VARIABLES ---------- */
     :root{
-      --clr-bg:#f6f4ef;
-      --clr-dark:#222;
-      --clr-light:#fff;
-      --clr-accent:#c7a27c;
+      --space-l:5rem;
+      --space-m:3rem;
+      --space-s:1.5rem;
+      --grey:#bfbfbf;
+      --black:#000;
+      --white:#fff;
     }
 
-    /* -----  LAYOUT  ------------------------------- */
+    /* ---------- HEADER ---------- */
     header{
-      position:fixed;top:0;left:0;right:0;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:1rem 2rem;z-index:1000;
-      background:var(--clr-light, #fff);
-      box-shadow:0 2px 8px rgba(0,0,0,.05);
+      width:100%;position:sticky;top:0;z-index:100;background:var(--white);
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+      padding:var(--space-s) var(--space-m);
     }
-    header .logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;letter-spacing:.04em}
-    nav ul{list-style:none;display:flex;gap:2rem}
-    nav li{font-weight:500}
+    .nav-left ul{list-style:none;display:flex;gap:var(--space-s)}
+    .site-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:500;text-align:center}
 
-    /*  HERO  */
-    .hero{
-      height:100vh;min-height:600px;position:relative;
-      background:url('https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      display:flex;align-items:center;justify-content:center;
-      text-align:center;
-      color:var(--clr-light);
+    /* ---------- HERO ---------- */
+    .hero{padding:calc(var(--space-l)*1.5) var(--space-m) var(--space-l);text-align:center}
+    .hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.15}
+
+    /* ---------- PRODUCTS ---------- */
+    .products{padding-bottom:var(--space-l)}
+    .product-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-l) var(--space-m);place-items:center}
+    figure{display:flex;flex-direction:column;align-items:center;text-align:center}
+    /* Adjusted aspect ratio: width:height = 1:2 */
+    figure img{aspect-ratio:1/2;border-radius:3px;object-fit:cover;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+    figcaption{margin-top:var(--space-s);font-family:'Playfair Display',serif;font-size:1.1rem;text-decoration:underline;cursor:pointer}
+
+    /* ---------- CONTACT ---------- */
+    .contact{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+    .contact-left{background:var(--grey);display:flex;justify-content:center;align-items:center;padding:var(--space-l)}
+    .frame{background:var(--white);padding:var(--space-s);box-shadow:0 6px 24px rgba(0,0,0,.12)}
+    .frame img{width:350px;height:auto}
+    .contact-right{padding:var(--space-l);display:flex;flex-direction:column;justify-content:center}
+    .contact-right h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:500;margin-bottom:var(--space-s)}
+    .contact-right p{margin-bottom:var(--space-s);max-width:400px}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:var(--space-l) var(--space-m);text-align:center}
+    .newsletter{display:inline-flex;gap:0}
+    .newsletter input{padding:.9rem 1.2rem;border:1px solid #d7d7d7;flex:1;min-width:220px;font:inherit}
+    .newsletter button{padding:.9rem 2rem;background:var(--black);color:var(--white);border:none;font:inherit;cursor:pointer}
+    .newsletter button:hover{opacity:.85}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:900px){
+      .contact{grid-template-columns:1fr}
+      .contact-left{order:2}
     }
-    .hero::before{
-      content:"";position:absolute;inset:0;background:rgba(0,0,0,.35);
+    @media(max-width:600px){
+      header{grid-template-columns:auto 1fr auto;gap:var(--space-m)}
+      .site-title{font-size:1.4rem}
+      .newsletter{flex-direction:column;gap:var(--space-s)}
     }
-    .hero-content{position:relative;max-width:800px;padding:0 1rem}
-    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;line-height:1.15;margin-bottom:1rem}
-    .hero p{font-size:1.15rem;font-weight:300;margin-bottom:2rem}
-    .btn{display:inline-block;padding:.9rem 2.2rem;border:2px solid var(--clr-light);font-weight:500;border-radius:0;letter-spacing:.04em;transition:.3s}
-    .btn:hover{background:var(--clr-light);color:var(--clr-dark)}
-
-    /*  SECTION BASE  */
-    section{padding:7rem 1rem;background:var(--clr-bg)}
-    .container{max-width:1200px;margin-inline:auto}
-    .section-title{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;margin-bottom:1.5rem;text-align:center}
-    .section-sub{max-width:700px;margin:0 auto 3rem;text-align:center;font-size:1.1rem}
-
-    /*  ABOUT  */
-    .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:3rem;align-items:center}
-    .about-grid img{border-radius:4px}
-    .about-grid .text h3{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1rem}
-
-    /*  GALLERY  */
-    .gallery-grid{columns:1 280px;column-gap:1rem}
-    @media(min-width:600px){.gallery-grid{columns:2 280px}}
-    @media(min-width:900px){.gallery-grid{columns:3 280px}}
-    .gallery-grid img{width:100%;margin-bottom:1rem;border-radius:4px;transition:opacity .3s}
-    .gallery-grid img:hover{opacity:.8}
-
-    /*  FOOTER  */
-    footer{background:var(--clr-dark);color:var(--clr-light);padding:3rem 1rem;text-align:center}
-    footer p{font-size:.9rem}
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header>
-    <div class="logo">Montclaire</div>
-    <nav>
+    <nav class="nav-left">
       <ul>
         <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#prints">All Prints</a></li>
       </ul>
     </nav>
+    <div class="site-title">Soojin Lee</div>
+    <div></div><!-- empty cell to preserve grid structure -->
   </header>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>Modern & Fluid Design</h1>
-      <p>A minimal, elegant template perfect for portfolios, lifestyle brands, and creative studios.</p>
-      <a class="btn" href="#about">Explore More</a>
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <h1>Translator.</h1>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="prints">
+    <div class="product-grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=600&q=80" alt="Fresa">
+        <figcaption><a href="#">Fresa</a></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=600&q=80" alt="Sangre">
+        <figcaption><a href="#">Sangre</a></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=600&q=80" alt="Dune">
+        <figcaption><a href="#">Dune</a></figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container about-grid">
-      <div class="text">
-        <h3>About the Studio</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat, lorem vitae tincidunt interdum, orci dolor iaculis nibh, vitae tristique lorem ipsum nec mi. Integer euismod, sapien a egestas aliquet.</p>
-        <p>Duis sit amet orci consequat, maximus sapien ac, pellentesque augue. Sed ac sapien facilisis, volutpat neque vitae, mattis leo.</p>
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-left">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Artwork">
       </div>
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Studio interior" />
+    </div>
+    <div class="contact-right">
+      <h2>Contact</h2>
+      <p>If you have translation projects or any questions, contact me here:</p>
+      <p><a href="mailto:lucia.sujan@gmail.com">lucia.sujan@gmail.com</a></p>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="container">
-      <h2 class="section-title">Portfolio</h2>
-      <p class="section-sub">A curated selection of recent projects—capturing the essence of refined yet fluid aesthetics.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="newsletter">
+      <input type="email" placeholder="Email Address" />
+      <button type="button">Sign Up</button>
     </div>
-    <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=800&q=80" alt="Project 1">
-      <img src="https://images.unsplash.com/photo-1529651737248-dad5e0f164d4?auto=format&fit=crop&w=800&q=80" alt="Project 2">
-      <img src="https://images.unsplash.com/photo-1532969830690-8ab2ce1cc567?auto=format&fit=crop&w=800&q=80" alt="Project 3">
-      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Project 4">
-      <img src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?auto=format&fit=crop&w=800&q=80" alt="Project 5">
-      <img src="https://images.unsplash.com/photo-1526318472351-bc37febb55e6?auto=format&fit=crop&w=800&q=80" alt="Project 6">
-    </div>
-  </section>
-
-  <!-- CONTACT / FOOTER -->
-  <footer id="contact">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:1rem">Get in Touch</h2>
-    <p>Email: hello@example.com</p>
-    <p>© 2025 Montclaire. All rights reserved.</p>
   </footer>
 </body>
 </html>
